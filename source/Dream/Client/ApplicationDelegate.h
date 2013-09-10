@@ -37,6 +37,8 @@ namespace Dream
 			
 			static Ref<Resources::ILoader> default_resource_loader ();
 		};
+		
+		Ref<Resources::ILoader> default_resource_loader ();
 	}
 }
 
