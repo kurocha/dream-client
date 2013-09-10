@@ -37,20 +37,8 @@ namespace Dream
 			_thread = new Events::Thread;
 			_thread->start();
 
-			Ref<ILoader> loader = new Resources::Loader;
+			Ref<ILoader> loader = default_resource_loader();
 			
-			// Something like this would be nice.
-			// Imaging::register_loaders(loader);
-			// Audio::register_loaders(loader);
-			// Text::register_loaders(loader);
-			// Graphics::register_loaders(loader);
-			
-			loader->add_loader(new Imaging::Image::Loader);
-			loader->add_loader(new Audio::Sound::Loader);
-			loader->add_loader(new Audio::OggResource::Loader);
-			loader->add_loader(new Text::Font::Loader);
-			loader->add_loader(new Graphics::ShaderFactory::Loader);
-
 			_scene_manager = new SceneManager(_context, _thread->loop(), loader);
 			_scene_manager->push_scene(_scene);
 
@@ -81,6 +69,25 @@ namespace Dream
 
 			EventInput resume_event(EventInput::RESUME);
 			_scene_manager->process_input(_context, resume_event);
+		}
+		
+		Ref<Resources::ILoader> default_resource_loader ()
+		{
+			// Something like this would be nice?
+			// Imaging::register_loaders(loader);
+			// Audio::register_loaders(loader);
+			// Text::register_loaders(loader);
+			// Graphics::register_loaders(loader);
+			
+			Ref<ILoader> loader = new Resources::Loader;
+			
+			loader->add_loader(new Imaging::Image::Loader);
+			loader->add_loader(new Audio::Sound::Loader);
+			loader->add_loader(new Audio::OggResource::Loader);
+			loader->add_loader(new Text::Font::Loader);
+			loader->add_loader(new Graphics::ShaderFactory::Loader);
+			
+			return loader;
 		}
 	}
 }
