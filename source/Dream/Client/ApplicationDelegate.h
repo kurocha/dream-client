@@ -35,6 +35,8 @@ namespace Dream
 			virtual void application_will_enter_background (IApplication * application);
 			virtual void application_did_enter_foreground (IApplication * application);
 		};
+		
+		Ref<Resources::ILoader> default_resource_loader ();
 	}
 }
 
