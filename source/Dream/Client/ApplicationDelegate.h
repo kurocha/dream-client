@@ -20,6 +20,8 @@ namespace Dream
 		
 		class ApplicationDelegate : public Object, implements IApplicationDelegate {
 		public:
+			// Configuration may include:
+			//     (Path) Application.RuntimePath - the path that is the root for the resource loader.
 			ApplicationDelegate(Ptr<IScene> scene, Ptr<Dictionary> config);
 			virtual ~ApplicationDelegate();
 
@@ -36,7 +38,7 @@ namespace Dream
 			virtual void application_did_enter_foreground (IApplication * application);
 		};
 		
-		Ref<Resources::ILoader> default_resource_loader ();
+		Ref<Resources::ILoader> default_resource_loader (Path path);
 	}
 }
 

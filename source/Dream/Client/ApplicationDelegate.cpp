@@ -37,7 +37,10 @@ namespace Dream
 			_thread = new Events::Thread;
 			_thread->start();
 
-			Ref<ILoader> loader = default_resource_loader();
+			Path runtime_path;
+
+			_config.get("Application.RuntimePath", runtime_path);
+			Ref<ILoader> loader = default_resource_loader(runtime_path);
 			
 			_scene_manager = new SceneManager(_context, _thread->loop(), loader);
 			_scene_manager->push_scene(_scene);
@@ -71,7 +74,7 @@ namespace Dream
 			_scene_manager->process_input(_context, resume_event);
 		}
 		
-		Ref<Resources::ILoader> default_resource_loader ()
+		Ref<Resources::ILoader> default_resource_loader (Path path)
 		{
 			// Something like this would be nice?
 			// Imaging::register_loaders(loader);
@@ -79,7 +82,7 @@ namespace Dream
 			// Text::register_loaders(loader);
 			// Graphics::register_loaders(loader);
 			
-			Ref<ILoader> loader = new Resources::Loader;
+			Ref<ILoader> loader = new Resources::Loader(path);
 			
 			loader->add_loader(new Imaging::Image::Loader);
 			loader->add_loader(new Audio::Sound::Loader);
