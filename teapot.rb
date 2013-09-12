@@ -31,6 +31,9 @@ define_configuration "dream-client" do |configuration|
 	configuration.require "platforms"
 
 	configuration.require "dream"
+	configuration.require "dream-imaging"
+	configuration.require "dream-text"
+	configuration.require "dream-graphics"
 	configuration.require "dream-display"
 	configuration.require "unit-test"
 	
