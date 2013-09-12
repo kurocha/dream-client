@@ -24,3 +24,20 @@ define_target "dream-client" do |target|
 		append linkflags "-lDreamClient"
 	end
 end
+
+define_configuration "dream-client" do |configuration|
+	configuration.require "dream"
+	configuration.require "dream-audio-openal"
+	configuration.require "dream-imaging"
+	configuration.require "dream-text"
+	configuration.require "dream-graphics"
+	configuration.require "dream-display"
+end
+
+define_configuration "travis" do |configuration|
+	configuration[:source] = "https://github.com/dream-framework"
+	
+	configuration.require "platforms"
+	configuration.require "dream-display-osx"
+	configuration.import "dream-client"
+end
