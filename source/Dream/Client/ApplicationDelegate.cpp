@@ -39,7 +39,7 @@ namespace Dream
 
 			Path runtime_path;
 
-			_config.get("Application.RuntimePath", runtime_path);
+			_config->get("Application.RuntimePath", runtime_path);
 			Ref<ILoader> loader = default_resource_loader(runtime_path);
 			
 			_scene_manager = new SceneManager(_context, _thread->loop(), loader);
