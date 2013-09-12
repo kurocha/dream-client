@@ -26,6 +26,8 @@ define_target "dream-client" do |target|
 end
 
 define_configuration "dream-client" do |configuration|
+	configuration.public!
+	
 	configuration.require "dream"
 	configuration.require "dream-audio-openal"
 	configuration.require "dream-imaging"
