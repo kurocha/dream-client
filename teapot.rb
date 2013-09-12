@@ -11,9 +11,14 @@ define_target "dream-client" do |target|
 	end
 	
 	target.depends "Library/Dream"
-
+	
 	target.depends "Library/Dream/Audio"
-	target.depends "Library/Dream/Display"
+	target.depends "Library/Dream/Imaging"
+	target.depends "Library/Dream/Text"
+	target.depends "Library/Dream/Graphics"
+	
+	# The platform specific display context:
+	target.depends "Library/Dream/Client/Display"
 		
 	target.provides "Library/Dream/Client" do
 		append linkflags "-lDreamClient"
