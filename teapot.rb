@@ -28,12 +28,29 @@ end
 define_configuration "dream-client" do |configuration|
 	configuration.public!
 	
+	configuration.require "platforms"
+
 	configuration.require "dream"
-	configuration.require "dream-audio-openal"
-	configuration.require "dream-imaging"
-	configuration.require "dream-text"
-	configuration.require "dream-graphics"
 	configuration.require "dream-display"
+	configuration.require "unit-test"
+	
+	# Provides suitable packages for building on darwin:
+	host /darwin/ do
+		configuration.require "dream-display-osx"
+		configuration.require "dream-display-ios"
+	end
+
+	# Provides suitable packages for building on linux:
+	host /linux/ do
+		configuration.require "dream-display-x11"
+	end
+
+	# Provides suitable packages for building on windows:
+	host /windows/ do
+		configuration.require "dream-display-sdl"
+	end
+	
+	configuration.require "dream-audio-openal"
 end
 
 define_configuration "travis" do |configuration|
